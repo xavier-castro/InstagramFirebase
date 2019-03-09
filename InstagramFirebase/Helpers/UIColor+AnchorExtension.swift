@@ -15,7 +15,6 @@ extension UIColor {
 }
 
 extension UIView {
-
     @discardableResult
     func anchor(top: NSLayoutYAxisAnchor?, leading: NSLayoutXAxisAnchor?, bottom: NSLayoutYAxisAnchor?, trailing: NSLayoutXAxisAnchor?, padding: UIEdgeInsets = .zero, size: CGSize = .zero) -> AnchoredConstraints {
 
@@ -35,7 +34,7 @@ extension UIView {
         }
 
         if let trailing = trailing {
-            anchoredConstraints.leading = trailingAnchor.constraint(equalTo: trailing, constant: -padding.right)
+            anchoredConstraints.trailing = trailingAnchor.constraint(equalTo: trailing, constant: -padding.right)
         }
 
         if size.width != 0 {

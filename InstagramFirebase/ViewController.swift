@@ -88,12 +88,7 @@ class ViewController: UIViewController {
         stackView.spacing = 10
 
         view.addSubview(stackView)
-        stackView.topAnchor.constraint(equalTo: plusPhotoButton.bottomAnchor, constant: 20).isActive = true
-        stackView.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 40).isActive = true
-        stackView.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -40).isActive = true
-        stackView.heightAnchor.constraint(equalToConstant: 200).isActive = true
-
-
+        stackView.anchor(top: plusPhotoButton.bottomAnchor, leading: view.leadingAnchor, bottom: nil, trailing: view.trailingAnchor, padding: UIEdgeInsets(top: 20, left: 40, bottom: 0, right: 40), size: CGSize(width: 0, height: 200))
     }
 
 
