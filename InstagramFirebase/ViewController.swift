@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import FirebaseAuth
 
 class ViewController: UIViewController {
 
@@ -55,8 +56,22 @@ class ViewController: UIViewController {
         button.layer.cornerRadius = 5
         button.titleLabel?.font = UIFont.systemFont(ofSize: 14)
         button.setTitleColor(.white, for: .normal)
+        button.addTarget(self, action: #selector(handleSignUp), for: .touchUpInside)
         return button
     }()
+
+    @objc func handleSignUp() {
+        guard let email = emailTextField.text, email.count > 0 else { return }
+        guard let username = usernameTextField.text, username.count > 0 else { return }
+        guard let password = passwordTextField.text, password.count > 0 else { return }
+        Auth.auth().createUser(withEmail: email, password: password) { (user, error) in
+            if let err = error {
+                print("Failed to create user:", err)
+                return
+            }
+            print("Successfully created user:", user?.user.uid ?? "")
+        }
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -86,7 +101,5 @@ class ViewController: UIViewController {
         view.addSubview(stackView)
         stackView.anchor(top: plusPhotoButton.bottomAnchor, leading: view.leadingAnchor, bottom: nil, trailing: view.trailingAnchor, padding: UIEdgeInsets(top: 20, left: 40, bottom: 0, right: 40), size: CGSize(width: 0, height: 220))
     }
-
-
 }
 
