@@ -11,8 +11,9 @@ import UIKit
 class LoginController: UIViewController {
 
 	let instagramLogoImage: UIImageView = {
-		let image = UIImageView(image: #imageLiteral(resourceName: "Instagram_logo_white"))
+		let image = UIImageView(image: #imageLiteral(resourceName: "Instagram_logo_white").withRenderingMode(.alwaysTemplate))
 		image.contentMode = .scaleAspectFit
+		image.tintColor = .black
 		return image
 	}()
 
@@ -35,7 +36,7 @@ class LoginController: UIViewController {
 		view.backgroundColor = .white
 
 		view.addSubview(instagramLogoImage)
-		instagramLogoImage.anchor(top: view.safeAreaLayoutGuide.topAnchor, leading: view.safeAreaLayoutGuide.leadingAnchor, bottom: nil, trailing: view.safeAreaLayoutGuide.trailingAnchor, size: CGSize(width: 0, height: 50))
+		instagramLogoImage.anchor(top: view.safeAreaLayoutGuide.topAnchor, leading: view.safeAreaLayoutGuide.leadingAnchor, bottom: nil, trailing: view.safeAreaLayoutGuide.trailingAnchor, padding: UIEdgeInsets(top: 30, left: 0, bottom: 0, right: 0),size: CGSize(width: 0, height: 50))
 
 		view.addSubview(signUpButton)
 		signUpButton.anchor(top: nil, leading: view.safeAreaLayoutGuide.leadingAnchor, bottom: view.safeAreaLayoutGuide.bottomAnchor, trailing: view.safeAreaLayoutGuide.trailingAnchor, size: CGSize(width: 0, height: 200))
