@@ -1,5 +1,5 @@
 //
-//  ViewController.swift
+//  SignUpController.swift
 //  InstagramFirebase
 //
 //  Created by Xavier Castro on 3/8/19.
@@ -11,7 +11,7 @@ import FirebaseAuth
 import FirebaseDatabase
 import FirebaseStorage
 
-class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+class SignUpController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
 
     // MARK: BUTTONS AND LABELS
 
