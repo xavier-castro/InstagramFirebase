@@ -10,11 +10,16 @@ import UIKit
 
 class LoginController: UIViewController {
 
-	let instagramLogoImage: UIImageView = {
-		let image = UIImageView(image: #imageLiteral(resourceName: "Instagram_logo_white").withRenderingMode(.alwaysTemplate))
-		image.contentMode = .scaleAspectFit
-		image.tintColor = .black
-		return image
+	let logoContainerView: UIView = {
+		let view = UIView()
+		let logoImageView = UIImageView(image: #imageLiteral(resourceName: "logo2").withRenderingMode(.alwaysTemplate))
+		logoImageView.tintColor = .white
+		logoImageView.contentMode = .scaleAspectFill
+		view.addSubview(logoImageView)
+		logoImageView.anchor(top: nil, leading: nil, bottom: nil, trailing: nil, size: CGSize(width: 200, height: 50))
+		logoImageView.centerInSuperview()
+		view.backgroundColor = UIColor.rgb(red: 0, green: 120, blue: 175, alpha: 1)
+		return view
 	}()
 
 	let signUpButton: UIButton = {
@@ -29,14 +34,18 @@ class LoginController: UIViewController {
 		navigationController?.pushViewController(signUpController, animated: true)
 	}
 
+	override var preferredStatusBarStyle: UIStatusBarStyle {
+		return .lightContent
+	}
+
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		navigationController?.isNavigationBarHidden = true
 
 		view.backgroundColor = .white
 
-		view.addSubview(instagramLogoImage)
-		instagramLogoImage.anchor(top: view.safeAreaLayoutGuide.topAnchor, leading: view.safeAreaLayoutGuide.leadingAnchor, bottom: nil, trailing: view.safeAreaLayoutGuide.trailingAnchor, padding: UIEdgeInsets(top: 30, left: 0, bottom: 0, right: 0),size: CGSize(width: 0, height: 50))
+		view.addSubview(logoContainerView)
+		logoContainerView.anchor(top: view.topAnchor, leading: view.leadingAnchor, bottom: nil, trailing: view.trailingAnchor, size: CGSize(width: 0, height: 150))
 
 		view.addSubview(signUpButton)
 		signUpButton.anchor(top: nil, leading: view.safeAreaLayoutGuide.leadingAnchor, bottom: view.safeAreaLayoutGuide.bottomAnchor, trailing: view.safeAreaLayoutGuide.trailingAnchor, size: CGSize(width: 0, height: 200))
