@@ -28,17 +28,42 @@ class MainTabBarController: UITabBarController {
 	}
 
 	func setupViewControllers() {
-		view.backgroundColor = .white
+		let homeNavController = templateNavController(unselectedImage: #imageLiteral(resourceName: "home_unselected"), selectedImage: #imageLiteral(resourceName: "home_selected"))
+		let searchNavController = templateNavController(unselectedImage: #imageLiteral(resourceName: "search_unselected"), selectedImage: #imageLiteral(resourceName: "search_selected"))
+		let plusNavController = templateNavController(unselectedImage: #imageLiteral(resourceName: "plus_unselected"), selectedImage: #imageLiteral(resourceName: "plus_unselected"))
+		let likeNavController = templateNavController(unselectedImage: #imageLiteral(resourceName: "like_unselected"), selectedImage: #imageLiteral(resourceName: "like_selected"))
+
 		let layout = UICollectionViewFlowLayout()
 		let userProfileController = UserProfileController(collectionViewLayout: layout)
+		let userProfileNavController = UINavigationController(rootViewController: userProfileController)
+		userProfileController.tabBarItem.image = #imageLiteral(resourceName: "profile_unselected")
+		userProfileController.tabBarItem.selectedImage = #imageLiteral(resourceName: "profile_selected")
 
-		let navController = UINavigationController(rootViewController: userProfileController)
-
-		navController.tabBarItem.image = #imageLiteral(resourceName: "profile_unselected")
-		navController.tabBarItem.selectedImage = #imageLiteral(resourceName: "profile_selected")
+		view.backgroundColor = .white
 		tabBar.tintColor = .black
 
-		viewControllers = [navController]
+		viewControllers = [
+			homeNavController,
+			searchNavController,
+			plusNavController,
+			likeNavController,
+			userProfileNavController
+		]
+
+		// Modify tab bar item insets
+		guard let items = tabBar.items else { return }
+		for item in items {
+			item.imageInsets = UIEdgeInsets(top: 4, left: 0, bottom: -4, right: 0)
+		}
+
+	}
+
+	fileprivate func templateNavController(unselectedImage: UIImage, selectedImage: UIImage, rootViewController: UIViewController = UIViewController()) -> UINavigationController {
+		let viewController = rootViewController
+		let navController = UINavigationController(rootViewController: viewController)
+		navController.tabBarItem.image = unselectedImage
+		navController.tabBarItem.selectedImage = selectedImage
+		return navController
 	}
 
 }

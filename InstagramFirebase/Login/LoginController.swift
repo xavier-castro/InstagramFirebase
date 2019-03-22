@@ -13,7 +13,7 @@ class LoginController: UIViewController {
 
 	let logoContainerView: UIView = {
 		let view = UIView()
-		let logoImageView = UIImageView(image: #imageLiteral(resourceName: "logo2").withRenderingMode(.alwaysTemplate))
+		let logoImageView = UIImageView(image: #imageLiteral(resourceName: "Instagram_logo_white").withRenderingMode(.alwaysTemplate))
 		logoImageView.tintColor = .white
 		logoImageView.contentMode = .scaleAspectFill
 		view.addSubview(logoImageView)
