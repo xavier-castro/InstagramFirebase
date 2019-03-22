@@ -68,6 +68,19 @@ class SignUpController: UIViewController, UIImagePickerControllerDelegate, UINav
         return button
     }()
 
+	let alreadyHaveAccountButton: UIButton = {
+		let button = UIButton(type: .system)
+
+		let attributedTitle = NSMutableAttributedString(string: "Already have an account?  ", attributes: [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 14), NSAttributedString.Key.foregroundColor: UIColor.lightGray])
+
+		attributedTitle.append(NSAttributedString(string: "Sign In.", attributes: [NSAttributedString.Key.font: UIFont.boldSystemFont(ofSize: 14), NSAttributedString.Key.foregroundColor: UIColor.rgb(red: 17, green: 154, blue: 237, alpha: 1)]))
+
+		button.setAttributedTitle(attributedTitle, for: .normal)
+
+		button.addTarget(self, action: #selector(handleShowLogin), for: .touchUpInside)
+		return button
+	}()
+
     // MARK: OBJC FUNCTIONS
 
     @objc func handleSignUp() {
@@ -110,6 +123,10 @@ class SignUpController: UIViewController, UIImagePickerControllerDelegate, UINav
             })
         }
     }
+
+	@objc func handleShowLogin() {
+		navigationController?.popViewController(animated: true)
+	}
 
     @objc func handleTextInputChange() {
         let isFormValid = emailTextField.text?.count ?? 0 > 0 && usernameTextField.text?.count ?? 0 > 0 && passwordTextField.text?.count ?? 0 > 0
@@ -171,6 +188,10 @@ class SignUpController: UIViewController, UIImagePickerControllerDelegate, UINav
 
         view.addSubview(stackView)
         stackView.anchor(top: plusPhotoButton.bottomAnchor, leading: view.leadingAnchor, bottom: nil, trailing: view.trailingAnchor, padding: UIEdgeInsets(top: 20, left: 40, bottom: 0, right: 40), size: CGSize(width: 0, height: 220))
+
+		view.addSubview(alreadyHaveAccountButton)
+		alreadyHaveAccountButton.anchor(top: nil, leading: view.safeAreaLayoutGuide.leadingAnchor, bottom: view.safeAreaLayoutGuide.bottomAnchor, trailing: view.safeAreaLayoutGuide.trailingAnchor, size: CGSize(width: 0, height: 200))
+
     }
 }
 
