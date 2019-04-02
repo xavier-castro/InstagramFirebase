@@ -34,6 +34,7 @@ class PhotoSelectorController: UICollectionViewController, UICollectionViewDeleg
 
 	var selectedImage: UIImage?
 	var images = [UIImage]()
+	var assets = [PHAsset]()
 
 	fileprivate func assetFetchOptions() -> PHFetchOptions {
 		let fetchOptions = PHFetchOptions()
@@ -49,20 +50,22 @@ class PhotoSelectorController: UICollectionViewController, UICollectionViewDeleg
 		DispatchQueue.global(qos: .background).async {
 			allPhotos.enumerateObjects { (asset, count, stop) in
 				let imageManager = PHImageManager.default()
-				let targetSize = CGSize(width: 350, height: 350)
+				let targetSize = CGSize(width: 200, height: 200)
 				let options = PHImageRequestOptions()
 				options.isSynchronous = true
 				imageManager.requestImage(for: asset, targetSize: targetSize, contentMode: .aspectFit, options: options, resultHandler: { (image, info) in
 					if let image = image {
 						self.images.append(image)
+						self.assets.append(asset)
 
 						if self.selectedImage == nil {
 							self.selectedImage = image
 						}
 					}
-
 					if count == allPhotos.count - 1 {
-						self.collectionView?.reloadData()
+						DispatchQueue.main.async {
+							self.collectionView?.reloadData()
+						}
 					}
 				})
 			}
@@ -80,7 +83,19 @@ class PhotoSelectorController: UICollectionViewController, UICollectionViewDeleg
 
 	override func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
 		let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: headerId, for: indexPath) as! PhotoSelectorHeader
+
 		header.photoImageView.image = selectedImage
+
+		if let selectedImage = selectedImage {
+			if let index = self.images.firstIndex(of: selectedImage) {
+				let imageManager = PHImageManager.default()
+				let selectedAsset = self.assets[index]
+				imageManager.requestImage(for: selectedAsset, targetSize: CGSize(width: 600, height: 600), contentMode: .default, options: nil) { (image, info) in
+					header.photoImageView.image = image
+				}
+			}
+		}
+
 		return header
 	}
 
