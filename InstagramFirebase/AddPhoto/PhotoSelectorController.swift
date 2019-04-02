@@ -32,6 +32,8 @@ class PhotoSelectorController: UICollectionViewController, UICollectionViewDeleg
 	fileprivate func fetchPhotos() {
 		let fetchOptions = PHFetchOptions()
 		fetchOptions.fetchLimit = 10
+		let sortDescriptor = NSSortDescriptor(key: "creationDate", ascending: false)
+		fetchOptions.sortDescriptors = [sortDescriptor]
 		let allPhotos = PHAsset.fetchAssets(with: .image, options: fetchOptions)
 		allPhotos.enumerateObjects { (asset, count, stop) in
 			let imageManager = PHImageManager.default()
