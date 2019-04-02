@@ -22,11 +22,17 @@ class PhotoSelectorController: UICollectionViewController, UICollectionViewDeleg
 
 		collectionView.register(PhotoSelectorCell.self, forCellWithReuseIdentifier: cellId)
 
-		collectionView.register(UICollectionViewCell.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: headerId)
+		collectionView.register(PhotoSelectorHeader.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: headerId)
 
 		fetchPhotos()
 	}
 
+	override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+		self.selectedImage = images[indexPath.item]
+		collectionView.reloadData()
+	}
+
+	var selectedImage: UIImage?
 	var images = [UIImage]()
 
 	fileprivate func fetchPhotos() {
@@ -62,8 +68,8 @@ class PhotoSelectorController: UICollectionViewController, UICollectionViewDeleg
 	}
 
 	override func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
-		let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: headerId, for: indexPath)
-		header.backgroundColor = .red
+		let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: headerId, for: indexPath) as! PhotoSelectorHeader
+		header.photoImageView.image = selectedImage
 		return header
 	}
 
