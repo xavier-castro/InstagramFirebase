@@ -30,6 +30,9 @@ class PhotoSelectorController: UICollectionViewController, UICollectionViewDeleg
 	override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
 		self.selectedImage = images[indexPath.item]
 		collectionView.reloadData()
+
+		let indexPath = IndexPath(item: 0, section: 0)
+		collectionView.scrollToItem(at: indexPath, at: .bottom, animated: true)
 	}
 
 	var selectedImage: UIImage?
@@ -38,7 +41,7 @@ class PhotoSelectorController: UICollectionViewController, UICollectionViewDeleg
 
 	fileprivate func assetFetchOptions() -> PHFetchOptions {
 		let fetchOptions = PHFetchOptions()
-		fetchOptions.fetchLimit = 10
+		fetchOptions.fetchLimit = 30
 		let sortDescriptor = NSSortDescriptor(key: "creationDate", ascending: false)
 		fetchOptions.sortDescriptors = [sortDescriptor]
 		return fetchOptions
@@ -139,7 +142,8 @@ class PhotoSelectorController: UICollectionViewController, UICollectionViewDeleg
 	}
 
 	@objc private func handleNext() {
-		print("Handling next")
+		let sharePhotoController = SharePhotoController()
+		navigationController?.pushViewController(sharePhotoController, animated: true)
 	}
 
 }
