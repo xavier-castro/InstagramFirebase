@@ -27,8 +27,6 @@ class UserProfileController: UICollectionViewController, UICollectionViewDelegat
 
 		setupLogoutButton()
 
-//		fetchPosts()
-
 		fetchOrderedPosts()
     }
 
@@ -38,25 +36,10 @@ class UserProfileController: UICollectionViewController, UICollectionViewDelegat
 
 		ref.queryOrdered(byChild: "creationDate").observe(.childAdded) { (snapshot) in
 			guard let dictionary = snapshot.value as? [String: Any] else { return }
- 			let post = Post(dictionary: dictionary)
+			guard let user = self.user else { return }
+			let post = Post(user: user, dictionary: dictionary)
 			self.posts.append(post)
 			self.collectionView.reloadData()
-		}
-	}
-
-	fileprivate func fetchPosts() {
-		guard let uid = Firebase.Auth.auth().currentUser?.uid else { return }
-		let ref = Firebase.Database.database().reference().child("posts").child(uid)
-		ref.observeSingleEvent(of: .value, with: { (snapshot) in
-			guard let dictionaries = snapshot.value as? [String: Any] else { return }
-			dictionaries.forEach({ (key, value) in
-				guard let dictionary = value as? [String: Any] else { return }
-				let post = Post(dictionary: dictionary)
-				self.posts.append(post)
-			})
-			self.collectionView?.reloadData()
-		}) { (err) in
-			print("Failed to fetch posts:", err)
 		}
 	}
 
@@ -134,14 +117,4 @@ class UserProfileController: UICollectionViewController, UICollectionViewDelegat
         return header
     }
     
-}
-
-struct User {
-    let username: String
-    let profileImageUrl: String
-
-    init(dictionary: [String: Any]) {
-        self.username = dictionary["username"] as? String ?? ""
-        self.profileImageUrl = dictionary["profileImageUrl"] as? String ?? ""
-    }
 }

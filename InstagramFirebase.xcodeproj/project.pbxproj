@@ -12,6 +12,7 @@
 		96284E3222542EB6000DCAFE /* SharePhotoController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96284E3122542EB6000DCAFE /* SharePhotoController.swift */; };
 		962CA60E225559BB00173209 /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = 962CA60D225559BB00173209 /* Post.swift */; };
 		962CA61022555BBD00173209 /* UserProfilePhotoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 962CA60F22555BBD00173209 /* UserProfilePhotoCell.swift */; };
+		962F3FCA2258082300B91D17 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 962F3FC92258082300B91D17 /* User.swift */; };
 		965C55102252F95600A146A6 /* PhotoSelectorCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 965C550F2252F95600A146A6 /* PhotoSelectorCell.swift */; };
 		965F5C572257C71B00AE2DB8 /* CustomImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 965F5C562257C71B00AE2DB8 /* CustomImageView.swift */; };
 		965F5C5A2257CC5400AE2DB8 /* HomeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 965F5C592257CC5400AE2DB8 /* HomeController.swift */; };
@@ -37,6 +38,7 @@
 		96284E3122542EB6000DCAFE /* SharePhotoController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharePhotoController.swift; sourceTree = "<group>"; };
 		962CA60D225559BB00173209 /* Post.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
 		962CA60F22555BBD00173209 /* UserProfilePhotoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfilePhotoCell.swift; sourceTree = "<group>"; };
+		962F3FC92258082300B91D17 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		965C550F2252F95600A146A6 /* PhotoSelectorCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoSelectorCell.swift; sourceTree = "<group>"; };
 		965F5C562257C71B00AE2DB8 /* CustomImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomImageView.swift; sourceTree = "<group>"; };
 		965F5C592257CC5400AE2DB8 /* HomeController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeController.swift; sourceTree = "<group>"; };
@@ -85,6 +87,7 @@
 			isa = PBXGroup;
 			children = (
 				962CA60D225559BB00173209 /* Post.swift */,
+				962F3FC92258082300B91D17 /* User.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -324,6 +327,7 @@
 				962CA60E225559BB00173209 /* Post.swift in Sources */,
 				96F124202233837E00B97618 /* UIColor+AnchorExtension.swift in Sources */,
 				962CA61022555BBD00173209 /* UserProfilePhotoCell.swift in Sources */,
+				962F3FCA2258082300B91D17 /* User.swift in Sources */,
 				96E6DAC6223B0F7900DA9A79 /* MainTabBarController.swift in Sources */,
 				96E6DACB223B1B2B00DA9A79 /* UserProfileHeader.swift in Sources */,
 				96E6DAC8223B103400DA9A79 /* UserProfileController.swift in Sources */,
