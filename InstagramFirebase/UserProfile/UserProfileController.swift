@@ -13,6 +13,7 @@ class UserProfileController: UICollectionViewController, UICollectionViewDelegat
 
     let headerId = "headerId"
 	let cellId = "cellId"
+	var posts = [Post]()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -30,8 +31,6 @@ class UserProfileController: UICollectionViewController, UICollectionViewDelegat
 
 		fetchOrderedPosts()
     }
-
-	var posts = [Post]()
 
 	fileprivate func fetchOrderedPosts() {
 		guard let uid = Firebase.Auth.auth().currentUser?.uid else { return }
