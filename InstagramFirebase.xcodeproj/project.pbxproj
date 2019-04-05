@@ -28,6 +28,7 @@
 		96F124152233757100B97618 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 96F124142233757100B97618 /* Assets.xcassets */; };
 		96F124182233757100B97618 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 96F124162233757100B97618 /* LaunchScreen.storyboard */; };
 		96F124202233837E00B97618 /* UIColor+AnchorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96F1241F2233837E00B97618 /* UIColor+AnchorExtension.swift */; };
+		A8B2B76D6F163E41CDDCBA7B /* FirebaseUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8B2B68C77724091DCDD7341 /* FirebaseUtils.swift */; };
 		BF52CC4246E5DEE691A44D59 /* Pods_InstagramFirebase.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BA461B7CB637498F1A10B931 /* Pods_InstagramFirebase.framework */; };
 /* End PBXBuildFile section */
 
@@ -57,6 +58,7 @@
 		96F124192233757100B97618 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		96F1241F2233837E00B97618 /* UIColor+AnchorExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+AnchorExtension.swift"; sourceTree = "<group>"; };
 		9EE4D5B7AB7BEC7964E43539 /* Pods-InstagramFirebase.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-InstagramFirebase.debug.xcconfig"; path = "Target Support Files/Pods-InstagramFirebase/Pods-InstagramFirebase.debug.xcconfig"; sourceTree = "<group>"; };
+		A8B2B68C77724091DCDD7341 /* FirebaseUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FirebaseUtils.swift; sourceTree = "<group>"; };
 		BA461B7CB637498F1A10B931 /* Pods_InstagramFirebase.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_InstagramFirebase.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -157,6 +159,7 @@
 			children = (
 				96F1241F2233837E00B97618 /* UIColor+AnchorExtension.swift */,
 				965F5C562257C71B00AE2DB8 /* CustomImageView.swift */,
+				A8B2B68C77724091DCDD7341 /* FirebaseUtils.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -337,6 +340,7 @@
 				96284E3022541D14000DCAFE /* PhotoSelectorHeader.swift in Sources */,
 				96014EBE2249D7AA0033878C /* PhotoSelectorController.swift in Sources */,
 				965F5C5A2257CC5400AE2DB8 /* HomeController.swift in Sources */,
+				A8B2B76D6F163E41CDDCBA7B /* FirebaseUtils.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
