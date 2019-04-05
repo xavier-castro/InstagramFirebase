@@ -5,7 +5,9 @@
 
 import UIKit
 
-class UserSearchController: UICollectionViewController {
+class UserSearchController: UICollectionViewController, UICollectionViewDelegateFlowLayout {
+
+    let cellId = "cellId"
 
     let searchBar: UISearchBar = {
         let sb = UISearchBar()
@@ -17,9 +19,27 @@ class UserSearchController: UICollectionViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+
         collectionView.backgroundColor = .white
+
         navigationController?.navigationBar.addSubview(searchBar)
+
         let navBar = navigationController?.navigationBar
         searchBar.anchor(top: navBar?.topAnchor, leading: navBar?.leadingAnchor, bottom: navBar?.bottomAnchor, trailing: navBar?.trailingAnchor, padding: .init(top: 0, left: 8, bottom: 0, right: 8))
+
+        collectionView?.register(UserSearchCell.self, forCellWithReuseIdentifier: cellId)
+    }
+
+    override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return 5
+    }
+
+    override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath) as! UserSearchCell
+        return cell
+    }
+
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        return .init(width: view.frame.width, height: 66)
     }
 }
