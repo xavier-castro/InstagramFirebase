@@ -52,7 +52,6 @@ class UserProfileController: UICollectionViewController, UICollectionViewDelegat
 		alertController.addAction(UIAlertAction(title: "Log Out", style: .destructive, handler: { (_) in
 			do {
 				try Auth.auth().signOut()
-
 				// We need to present some kind of loginController
 				let loginController = LoginController()
 				let navController = UINavigationController(rootViewController: loginController)
@@ -73,9 +72,7 @@ class UserProfileController: UICollectionViewController, UICollectionViewDelegat
         guard let uid = Auth.auth().currentUser?.uid else { return }
         Database.database().reference().child("users").child(uid).observeSingleEvent(of: .value, with: { (snapshot) in
             guard let dictionary = snapshot.value as? [String: Any] else { return }
-
-            self.user = User(dictionary: dictionary)
-
+			self.user = User(uid: uid, dictionary: dictionary)
             self.navigationItem.title = self.user?.username
             self.collectionView?.reloadData()
 
