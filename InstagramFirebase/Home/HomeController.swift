@@ -56,6 +56,7 @@ class HomeController: UICollectionViewController, UICollectionViewDelegateFlowLa
 		var height: CGFloat = 40 + 8 + 8 // Username + UserProfileImageView
 		height += view.frame.width
 		height += 50
+		height += 60
 
 		return CGSize(width: view.frame.width, height: height)
 	}
