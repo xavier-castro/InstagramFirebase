@@ -9,6 +9,19 @@
 import UIKit
 import Firebase
 
+extension Database {
+	static func fetchUserWithUid(uid: String, completion: @escaping (User) ->()) {
+		print("Fetching user with uid:", uid)
+		Firebase.Database.database().reference().child("users").child(uid).observeSingleEvent(of: .value, with: { (snapshot) in
+			guard let userDictionary = snapshot.value as? [String: Any] else { return }
+			let user = User(uid: uid, dictionary: userDictionary)
+			completion(user)
+		}) { (err) in
+			print("Failed to fetch user for posts:", err)
+		}
+	}
+}
+
 class HomeController: UICollectionViewController, UICollectionViewDelegateFlowLayout {
 
 	let cellId = "cellId"
@@ -16,40 +29,28 @@ class HomeController: UICollectionViewController, UICollectionViewDelegateFlowLa
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		collectionView?.backgroundColor = .white
-
 		collectionView?.register(HomePostCell.self, forCellWithReuseIdentifier: cellId)
-
 		setupNavigationItems()
-
 		fetchPosts()
 	}
 
 	var posts = [Post]()
 	fileprivate func fetchPosts() {
 		guard let uid = Auth.auth().currentUser?.uid else { return }
-		Database.database().reference().child("users").child(uid).observeSingleEvent(of: .value, with: { (snapshot) in
-			guard let userDictionary = snapshot.value as? [String: Any] else { return }
-			let user = User(uid: uid, dictionary: userDictionary)
+		Database.fetchUserWithUid(uid: uid) { (user) in
 			self.fetchPostsWithUser(user: user)
-		}) { (err) in
-			print("Failed to fetch user for posts:", err)
 		}
 	}
 
 	fileprivate func fetchPostsWithUser(user: User) {
-		guard let uid = Auth.auth().currentUser?.uid else { return }
-		let ref = Database.database().reference().child("posts").child(uid)
+		let ref = Database.database().reference().child("posts").child(user.uid)
 		ref.observeSingleEvent(of: .value, with: { (snapshot) in
 			guard let dictionaries = snapshot.value as? [String: Any] else { return }
-
 			dictionaries.forEach({ (key, value) in
 				guard let dictionary = value as? [String: Any] else { return }
-
 				let post = Post(user: user, dictionary: dictionary)
-
 				self.posts.append(post)
 			})
-
 			self.collectionView?.reloadData()
 
 		}) { (err) in
@@ -76,11 +77,8 @@ class HomeController: UICollectionViewController, UICollectionViewDelegateFlowLa
 	}
 
 	override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-
 		let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath) as! HomePostCell
-
 		cell.post = posts[indexPath.item]
-
 		return cell
 	}
 

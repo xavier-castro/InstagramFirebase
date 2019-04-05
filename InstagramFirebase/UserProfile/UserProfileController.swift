@@ -9,6 +9,21 @@
 import UIKit
 import Firebase
 
+extension Database {
+	static func fetchUserWithUid(uid: String, completion: @escaping () -> ()) {
+		print("Fetching user with uid:", uid)
+		guard let uid = Auth.auth().currentUser?.uid else { return }
+		Database.database().reference().child("users").child(uid).observeSingleEvent(of: .value, with: { (snapshot) in
+			guard let userDictionary = snapshot.value as? [String: Any] else { return }
+			let user = User(uid: uid, dictionary: userDictionary)
+			print(user.username)
+			completion()
+		}) { (err) in
+			print("Failed to fetch user:", err)
+		}
+	}
+}
+
 class UserProfileController: UICollectionViewController, UICollectionViewDelegateFlowLayout {
 
     let headerId = "headerId"
@@ -18,15 +33,10 @@ class UserProfileController: UICollectionViewController, UICollectionViewDelegat
     override func viewDidLoad() {
         super.viewDidLoad()
         collectionView?.backgroundColor = .white
-
         fetchUser()
-
         collectionView?.register(UserProfileHeader.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: headerId)
-
 		collectionView?.register(UserProfilePhotoCell.self, forCellWithReuseIdentifier: cellId)
-
 		setupLogoutButton()
-
 		fetchOrderedPosts()
     }
 
@@ -52,7 +62,6 @@ class UserProfileController: UICollectionViewController, UICollectionViewDelegat
 		alertController.addAction(UIAlertAction(title: "Log Out", style: .destructive, handler: { (_) in
 			do {
 				try Auth.auth().signOut()
-				// We need to present some kind of loginController
 				let loginController = LoginController()
 				let navController = UINavigationController(rootViewController: loginController)
 				self.present(navController, animated: true, completion: nil)
@@ -61,24 +70,18 @@ class UserProfileController: UICollectionViewController, UICollectionViewDelegat
 				print("Failed to sign out:", signOutError)
 			}
 		}))
-
 		alertController.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
-
 		present(alertController, animated: true, completion: nil)
 	}
 
     var user: User?
     fileprivate func fetchUser() {
-        guard let uid = Auth.auth().currentUser?.uid else { return }
-        Database.database().reference().child("users").child(uid).observeSingleEvent(of: .value, with: { (snapshot) in
-            guard let dictionary = snapshot.value as? [String: Any] else { return }
-			self.user = User(uid: uid, dictionary: dictionary)
-            self.navigationItem.title = self.user?.username
-            self.collectionView?.reloadData()
-
-        }) { (err) in
-            print("Failed to fetch user:", err)
-        }
+		guard let uid = Firebase.Auth.auth().currentUser?.uid else { return }
+		Database.fetchUserWithUid(uid: uid) { (user) in
+			self.user = user
+			self.navigationItem.title = self.user?.username
+			self.collectionView.reloadData()
+		}
     }
 
 	override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
