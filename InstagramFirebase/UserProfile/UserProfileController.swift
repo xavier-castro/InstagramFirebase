@@ -26,10 +26,24 @@ class UserProfileController: UICollectionViewController, UICollectionViewDelegat
 
 		setupLogoutButton()
 
-		fetchPosts()
+//		fetchPosts()
+
+		fetchOrderedPosts()
     }
 
 	var posts = [Post]()
+
+	fileprivate func fetchOrderedPosts() {
+		guard let uid = Firebase.Auth.auth().currentUser?.uid else { return }
+		let ref = Firebase.Database.database().reference().child("posts").child(uid)
+
+		ref.queryOrdered(byChild: "creationDate").observe(.childAdded) { (snapshot) in
+			guard let dictionary = snapshot.value as? [String: Any] else { return }
+ 			let post = Post(dictionary: dictionary)
+			self.posts.append(post)
+			self.collectionView.reloadData()
+		}
+	}
 
 	fileprivate func fetchPosts() {
 		guard let uid = Firebase.Auth.auth().currentUser?.uid else { return }
