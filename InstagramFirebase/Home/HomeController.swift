@@ -9,19 +9,6 @@
 import UIKit
 import Firebase
 
-extension Database {
-	static func fetchUserWithUid(uid: String, completion: @escaping (User) ->()) {
-		print("Fetching user with uid:", uid)
-		Firebase.Database.database().reference().child("users").child(uid).observeSingleEvent(of: .value, with: { (snapshot) in
-			guard let userDictionary = snapshot.value as? [String: Any] else { return }
-			let user = User(uid: uid, dictionary: userDictionary)
-			completion(user)
-		}) { (err) in
-			print("Failed to fetch user for posts:", err)
-		}
-	}
-}
-
 class HomeController: UICollectionViewController, UICollectionViewDelegateFlowLayout {
 
 	let cellId = "cellId"
@@ -32,12 +19,34 @@ class HomeController: UICollectionViewController, UICollectionViewDelegateFlowLa
 		collectionView?.register(HomePostCell.self, forCellWithReuseIdentifier: cellId)
 		setupNavigationItems()
 		fetchPosts()
+		fetchFollowingUserIds()
+	}
+
+	fileprivate func fetchFollowingUserIds() {
+		guard let uid = Auth.auth().currentUser?.uid else {
+			return
+		}
+		Database.database().reference().child("following").child(uid).observeSingleEvent(of: .value, with: { (snapshot) in
+
+			guard let userIdsDictionary = snapshot.value as? [String: Any] else {
+				return
+			}
+
+			userIdsDictionary.forEach({ (key, value) in
+				Database.fetchUserWithUID(uid: key, completion: { (user) in
+					self.fetchPostsWithUser(user: user)
+				})
+			})
+
+		}) { (err) in
+			print("Failed to fetch following user ids:", err)
+		}
 	}
 
 	var posts = [Post]()
 	fileprivate func fetchPosts() {
 		guard let uid = Auth.auth().currentUser?.uid else { return }
-		Database.fetchUserWithUid(uid: uid) { (user) in
+		Database.fetchUserWithUID(uid: uid) { (user) in
 			self.fetchPostsWithUser(user: user)
 		}
 	}
@@ -51,6 +60,11 @@ class HomeController: UICollectionViewController, UICollectionViewDelegateFlowLa
 				let post = Post(user: user, dictionary: dictionary)
 				self.posts.append(post)
 			})
+
+			self.posts.sort(by: { (p1, p2) -> Bool in
+				return p1.creationDate.compare(p2.creationDate) == .orderedDescending
+			})
+
 			self.collectionView?.reloadData()
 
 		}) { (err) in

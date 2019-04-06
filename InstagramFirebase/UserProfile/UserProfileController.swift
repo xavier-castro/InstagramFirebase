@@ -65,7 +65,7 @@ class UserProfileController: UICollectionViewController, UICollectionViewDelegat
     var user: User?
     fileprivate func fetchUser() {
 		let uid = userId ?? Auth.auth().currentUser?.uid ?? ""
-		Database.fetchUserWithUid(uid: uid) { (user) in
+		Database.fetchUserWithUID(uid: uid) { (user) in
 			self.user = user
 			self.navigationItem.title = self.user?.username
 			self.collectionView.reloadData()

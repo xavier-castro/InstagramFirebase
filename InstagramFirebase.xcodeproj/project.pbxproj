@@ -27,7 +27,7 @@
 		96F124132233757000B97618 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 96F124112233757000B97618 /* Main.storyboard */; };
 		96F124152233757100B97618 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 96F124142233757100B97618 /* Assets.xcassets */; };
 		96F124182233757100B97618 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 96F124162233757100B97618 /* LaunchScreen.storyboard */; };
-		96F124202233837E00B97618 /* UIColor+AnchorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96F1241F2233837E00B97618 /* UIColor+AnchorExtension.swift */; };
+		96F124202233837E00B97618 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96F1241F2233837E00B97618 /* Extensions.swift */; };
 		A8B2B76D6F163E41CDDCBA7B /* FirebaseUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8B2B68C77724091DCDD7341 /* FirebaseUtils.swift */; };
 		A8B2B935367A17A8FE9885C2 /* UserSearchCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8B2BCADFD34DF93E909FE6C /* UserSearchCell.swift */; };
 		A8B2BF0802EDE1D7CBF264B1 /* UserSearchController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8B2B1867F9D7FD8378546A7 /* UserSearchController.swift */; };
@@ -58,7 +58,7 @@
 		96F124142233757100B97618 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		96F124172233757100B97618 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		96F124192233757100B97618 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		96F1241F2233837E00B97618 /* UIColor+AnchorExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+AnchorExtension.swift"; sourceTree = "<group>"; };
+		96F1241F2233837E00B97618 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		9EE4D5B7AB7BEC7964E43539 /* Pods-InstagramFirebase.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-InstagramFirebase.debug.xcconfig"; path = "Target Support Files/Pods-InstagramFirebase/Pods-InstagramFirebase.debug.xcconfig"; sourceTree = "<group>"; };
 		A8B2B1867F9D7FD8378546A7 /* UserSearchController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserSearchController.swift; sourceTree = "<group>"; };
 		A8B2B68C77724091DCDD7341 /* FirebaseUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FirebaseUtils.swift; sourceTree = "<group>"; };
@@ -162,7 +162,7 @@
 		96F124212233853700B97618 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
-				96F1241F2233837E00B97618 /* UIColor+AnchorExtension.swift */,
+				96F1241F2233837E00B97618 /* Extensions.swift */,
 				965F5C562257C71B00AE2DB8 /* CustomImageView.swift */,
 				A8B2B68C77724091DCDD7341 /* FirebaseUtils.swift */,
 			);
@@ -342,7 +342,7 @@
 				965C55102252F95600A146A6 /* PhotoSelectorCell.swift in Sources */,
 				965F5C572257C71B00AE2DB8 /* CustomImageView.swift in Sources */,
 				962CA60E225559BB00173209 /* Post.swift in Sources */,
-				96F124202233837E00B97618 /* UIColor+AnchorExtension.swift in Sources */,
+				96F124202233837E00B97618 /* Extensions.swift in Sources */,
 				962CA61022555BBD00173209 /* UserProfilePhotoCell.swift in Sources */,
 				962F3FCA2258082300B91D17 /* User.swift in Sources */,
 				96E6DAC6223B0F7900DA9A79 /* MainTabBarController.swift in Sources */,
