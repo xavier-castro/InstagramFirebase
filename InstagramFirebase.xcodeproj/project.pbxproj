@@ -20,6 +20,7 @@
 		967617CA223F268D00E185CD /* LoginController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 967617C9223F268D00E185CD /* LoginController.swift */; };
 		96C0D7CA225BEF0A00999C1A /* CustomAnimationPresentor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96C0D7C9225BEF0A00999C1A /* CustomAnimationPresentor.swift */; };
 		96C0D7CC225BF1AC00999C1A /* CustomAnimationDismisser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96C0D7CB225BF1AC00999C1A /* CustomAnimationDismisser.swift */; };
+		96C0D7CE225BF93800999C1A /* CommentsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96C0D7CD225BF93800999C1A /* CommentsController.swift */; };
 		96CE1EF52239CF3100A9B83D /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 96CE1EF42239CF3100A9B83D /* GoogleService-Info.plist */; };
 		96DB1A85225BD306000A2AF8 /* CameraController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96DB1A84225BD306000A2AF8 /* CameraController.swift */; };
 		96E6DAC6223B0F7900DA9A79 /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96E6DAC5223B0F7900DA9A79 /* MainTabBarController.swift */; };
@@ -53,6 +54,7 @@
 		967617C9223F268D00E185CD /* LoginController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginController.swift; sourceTree = "<group>"; };
 		96C0D7C9225BEF0A00999C1A /* CustomAnimationPresentor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomAnimationPresentor.swift; sourceTree = "<group>"; };
 		96C0D7CB225BF1AC00999C1A /* CustomAnimationDismisser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomAnimationDismisser.swift; sourceTree = "<group>"; };
+		96C0D7CD225BF93800999C1A /* CommentsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentsController.swift; sourceTree = "<group>"; };
 		96CE1EF42239CF3100A9B83D /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		96DB1A84225BD306000A2AF8 /* CameraController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraController.swift; sourceTree = "<group>"; };
 		96E6DAC5223B0F7900DA9A79 /* MainTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
@@ -111,6 +113,7 @@
 			children = (
 				965F5C592257CC5400AE2DB8 /* HomeController.swift */,
 				965F5C5B2257CD4C00AE2DB8 /* HomePostCell.swift */,
+				96C0D7CD225BF93800999C1A /* CommentsController.swift */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -379,6 +382,7 @@
 				965F5C5A2257CC5400AE2DB8 /* HomeController.swift in Sources */,
 				A8B2B76D6F163E41CDDCBA7B /* FirebaseUtils.swift in Sources */,
 				A8B2BF0802EDE1D7CBF264B1 /* UserSearchController.swift in Sources */,
+				96C0D7CE225BF93800999C1A /* CommentsController.swift in Sources */,
 				A8B2B935367A17A8FE9885C2 /* UserSearchCell.swift in Sources */,
 				A8B2B296987C1EB95F26E68B /* PreviewPhotoContainerView.swift in Sources */,
 			);
