@@ -63,7 +63,6 @@ class CameraController: UIViewController, AVCapturePhotoCaptureDelegate, UIViewC
 
 	let customAnimationPresentor = CustomAnimationPresentor()
 	let customAnimationDismisser = CustomAnimationDismisser()
-	
 	func animationController(forPresented presented: UIViewController, presenting: UIViewController, source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
 		return customAnimationPresentor
 	}
@@ -110,7 +109,8 @@ class CameraController: UIViewController, AVCapturePhotoCaptureDelegate, UIViewC
 
 		// 3. Setup output preview
 		let previewLayer = AVCaptureVideoPreviewLayer(session: captureSession)
-		previewLayer.frame = view.frame
+		previewLayer.frame = view.bounds
+		previewLayer.videoGravity = AVLayerVideoGravity.resizeAspectFill
 		view.layer.addSublayer(previewLayer)
 		captureSession.startRunning()
 	}
