@@ -1,12 +1,12 @@
 {
   "images" : [
     {
+      "filename": "capture_photo@2x.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
       "idiom" : "universal",
-      "filename" : "capture_photo@2x.png",
       "scale" : "2x"
     },
     {
