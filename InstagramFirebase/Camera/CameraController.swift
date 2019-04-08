@@ -39,10 +39,24 @@ class CameraController: UIViewController, AVCapturePhotoCaptureDelegate, UIViewC
 		output.capturePhoto(with: settings, delegate: self)
 	}
 
-	func photoOutput(_ output: AVCapturePhotoOutput, didFinishProcessingPhoto photoSampleBuffer: CMSampleBuffer?, previewPhoto previewPhotoSampleBuffer: CMSampleBuffer?, resolvedSettings: AVCaptureResolvedPhotoSettings, bracketSettings: AVCaptureBracketedStillImageSettings?, error: Error?) {
+//	func photoOutput(_ output: AVCapturePhotoOutput, didFinishProcessingPhoto photoSampleBuffer: CMSampleBuffer?, previewPhoto previewPhotoSampleBuffer: CMSampleBuffer?, resolvedSettings: AVCaptureResolvedPhotoSettings, bracketSettings: AVCaptureBracketedStillImageSettings?, error: Error?) {
+//
+//		let imageData = AVCapturePhotoOutput.jpegPhotoDataRepresentation(forJPEGSampleBuffer: photoSampleBuffer!, previewPhotoSampleBuffer: previewPhotoSampleBuffer!)
+//
+//		let previewImage = UIImage(data: imageData!)
+//
+//		let containerView = PreviewPhotoContainerView()
+//		containerView.previewImageView.image = previewImage
+//		view.addSubview(containerView)
+//		containerView.anchor(top: view.topAnchor, leading: view.leadingAnchor, bottom: view.bottomAnchor, trailing: view.trailingAnchor)
+//
+//		print("Finish processing photo sample buffer...")
+//
+//	}
 
-		let imageData = AVCapturePhotoOutput.jpegPhotoDataRepresentation(forJPEGSampleBuffer: photoSampleBuffer!, previewPhotoSampleBuffer: previewPhotoSampleBuffer!)
-
+	@available(iOS 11.0, *)
+	func photoOutput(_ output: AVCapturePhotoOutput, didFinishProcessingPhoto photo: AVCapturePhoto, error: Error?) {
+		let imageData = photo.fileDataRepresentation()
 		let previewImage = UIImage(data: imageData!)
 
 		let containerView = PreviewPhotoContainerView()
@@ -51,7 +65,6 @@ class CameraController: UIViewController, AVCapturePhotoCaptureDelegate, UIViewC
 		containerView.anchor(top: view.topAnchor, leading: view.leadingAnchor, bottom: view.bottomAnchor, trailing: view.trailingAnchor)
 
 		print("Finish processing photo sample buffer...")
-
 	}
 
 	override func viewDidLoad() {
