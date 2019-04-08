@@ -18,6 +18,8 @@
 		965F5C5A2257CC5400AE2DB8 /* HomeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 965F5C592257CC5400AE2DB8 /* HomeController.swift */; };
 		965F5C5C2257CD4C00AE2DB8 /* HomePostCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 965F5C5B2257CD4C00AE2DB8 /* HomePostCell.swift */; };
 		967617CA223F268D00E185CD /* LoginController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 967617C9223F268D00E185CD /* LoginController.swift */; };
+		96C0D7CA225BEF0A00999C1A /* CustomAnimationPresentor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96C0D7C9225BEF0A00999C1A /* CustomAnimationPresentor.swift */; };
+		96C0D7CC225BF1AC00999C1A /* CustomAnimationDismisser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96C0D7CB225BF1AC00999C1A /* CustomAnimationDismisser.swift */; };
 		96CE1EF52239CF3100A9B83D /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 96CE1EF42239CF3100A9B83D /* GoogleService-Info.plist */; };
 		96DB1A85225BD306000A2AF8 /* CameraController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96DB1A84225BD306000A2AF8 /* CameraController.swift */; };
 		96E6DAC6223B0F7900DA9A79 /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96E6DAC5223B0F7900DA9A79 /* MainTabBarController.swift */; };
@@ -49,6 +51,8 @@
 		965F5C592257CC5400AE2DB8 /* HomeController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeController.swift; sourceTree = "<group>"; };
 		965F5C5B2257CD4C00AE2DB8 /* HomePostCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomePostCell.swift; sourceTree = "<group>"; };
 		967617C9223F268D00E185CD /* LoginController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginController.swift; sourceTree = "<group>"; };
+		96C0D7C9225BEF0A00999C1A /* CustomAnimationPresentor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomAnimationPresentor.swift; sourceTree = "<group>"; };
+		96C0D7CB225BF1AC00999C1A /* CustomAnimationDismisser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomAnimationDismisser.swift; sourceTree = "<group>"; };
 		96CE1EF42239CF3100A9B83D /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		96DB1A84225BD306000A2AF8 /* CameraController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraController.swift; sourceTree = "<group>"; };
 		96E6DAC5223B0F7900DA9A79 /* MainTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
@@ -125,6 +129,8 @@
 			children = (
 				96DB1A84225BD306000A2AF8 /* CameraController.swift */,
 				A8B2BB740B7380CB334BE5F6 /* PreviewPhotoContainerView.swift */,
+				96C0D7C9225BEF0A00999C1A /* CustomAnimationPresentor.swift */,
+				96C0D7CB225BF1AC00999C1A /* CustomAnimationDismisser.swift */,
 			);
 			path = Camera;
 			sourceTree = "<group>";
@@ -360,11 +366,13 @@
 				962CA61022555BBD00173209 /* UserProfilePhotoCell.swift in Sources */,
 				962F3FCA2258082300B91D17 /* User.swift in Sources */,
 				96E6DAC6223B0F7900DA9A79 /* MainTabBarController.swift in Sources */,
+				96C0D7CA225BEF0A00999C1A /* CustomAnimationPresentor.swift in Sources */,
 				96DB1A85225BD306000A2AF8 /* CameraController.swift in Sources */,
 				96E6DACB223B1B2B00DA9A79 /* UserProfileHeader.swift in Sources */,
 				96E6DAC8223B103400DA9A79 /* UserProfileController.swift in Sources */,
 				96F1240E2233757000B97618 /* AppDelegate.swift in Sources */,
 				967617CA223F268D00E185CD /* LoginController.swift in Sources */,
+				96C0D7CC225BF1AC00999C1A /* CustomAnimationDismisser.swift in Sources */,
 				965F5C5C2257CD4C00AE2DB8 /* HomePostCell.swift in Sources */,
 				96284E3022541D14000DCAFE /* PhotoSelectorHeader.swift in Sources */,
 				96014EBE2249D7AA0033878C /* PhotoSelectorController.swift in Sources */,
