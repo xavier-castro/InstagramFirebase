@@ -124,7 +124,7 @@ class HomeController: UICollectionViewController, UICollectionViewDelegateFlowLa
 
 	func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
 
-		var height: CGFloat = 40 + 8 + 8 //username userprofileimageview
+        var height: CGFloat = 40 + 8 + 8
 		height += view.frame.width
 		height += 50
 		height += 60
