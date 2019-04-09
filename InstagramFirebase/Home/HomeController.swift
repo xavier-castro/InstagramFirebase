@@ -65,9 +65,6 @@ class HomeController: UICollectionViewController, UICollectionViewDelegateFlowLa
 		}
 	}
 
-	// iOS9
-	// let refreshControl = UIRefreshControl()
-
 	var posts = [Post]()
 	fileprivate func fetchPosts() {
 		guard let uid = Auth.auth().currentUser?.uid else { return }
@@ -85,23 +82,23 @@ class HomeController: UICollectionViewController, UICollectionViewDelegateFlowLa
 				guard let dictionary = value as? [String: Any] else { return }
 				var post = Post(user: user, dictionary: dictionary)
 				post.id = key
-                guard let uid = Auth.auth().currentUser?.uid else {
-                    return
-                }
-                Database.database().reference().child("likes").child(key).child(uid).observeSingleEvent(of: .value, with: { (snapshot) in
-                    if let value = snapshot.value as? Int, value == 1 {
-                        post.hasLiked = true
-                    } else {
-                        post.hasLiked = false
-                    }
-                    self.posts.append(post)
-                    self.posts.sort(by: { (p1, p2) -> Bool in
-                        return p1.creationDate.compare(p2.creationDate) == .orderedDescending
-                    })
-                    self.collectionView?.reloadData()
-                }, withCancel: { (err) in
-                    print("Failed to fetch like info for post:", err)
-                })
+				guard let uid = Auth.auth().currentUser?.uid else {
+					return
+				}
+				Database.database().reference().child("likes").child(key).child(uid).observeSingleEvent(of: .value, with: { (snapshot) in
+					if let value = snapshot.value as? Int, value == 1 {
+						post.hasLiked = true
+					} else {
+						post.hasLiked = false
+					}
+					self.posts.append(post)
+					self.posts.sort(by: { (p1, p2) -> Bool in
+						return p1.creationDate.compare(p2.creationDate) == .orderedDescending
+					})
+					self.collectionView?.reloadData()
+				}, withCancel: { (err) in
+					print("Failed to fetch like info for post:", err)
+				})
 			})
 
 
@@ -124,7 +121,7 @@ class HomeController: UICollectionViewController, UICollectionViewDelegateFlowLa
 
 	func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
 
-        var height: CGFloat = 40 + 8 + 8
+		var height: CGFloat = 40 + 8 + 8
 		height += view.frame.width
 		height += 50
 		height += 60
@@ -151,31 +148,31 @@ class HomeController: UICollectionViewController, UICollectionViewDelegateFlowLa
 		navigationController?.pushViewController(commentsController, animated: true)
 	}
 
-    func didLike(for cell: HomePostCell) {
-        guard let indexPath = collectionView.indexPath(for: cell) else {
-            return
-        }
-        var post = self.posts[indexPath.item]
+	func didLike(for cell: HomePostCell) {
+		guard let indexPath = collectionView.indexPath(for: cell) else {
+			return
+		}
+		var post = self.posts[indexPath.item]
 
-        print(post.caption)
+		print(post.caption)
 
-        guard let postId = post.id else {
-            return
-        }
-        guard let uid = Auth.auth().currentUser?.uid else {
-            return
-        }
-        let values = [uid: post.hasLiked == true ? 0 : 1]
-        Database.database().reference().child("likes").child(postId).updateChildValues(values) { (error, _) in
-            if let error = error {
-                print("Failed to like post:", error)
-                return
-            }
-            print("Successfully liked post.")
-            post.hasLiked = !post.hasLiked
-            self.posts[indexPath.item] = post
-            self.collectionView.reloadItems(at: [indexPath])
-        }
-    }
+		guard let postId = post.id else {
+			return
+		}
+		guard let uid = Auth.auth().currentUser?.uid else {
+			return
+		}
+		let values = [uid: post.hasLiked == true ? 0 : 1]
+		Database.database().reference().child("likes").child(postId).updateChildValues(values) { (error, _) in
+			if let error = error {
+				print("Failed to like post:", error)
+				return
+			}
+			print("Successfully liked post.")
+			post.hasLiked = !post.hasLiked
+			self.posts[indexPath.item] = post
+			self.collectionView.reloadItems(at: [indexPath])
+		}
+	}
 
 }
