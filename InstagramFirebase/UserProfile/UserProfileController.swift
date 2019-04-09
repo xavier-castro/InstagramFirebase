@@ -42,21 +42,23 @@ class UserProfileController: UICollectionViewController, UICollectionViewDelegat
 	fileprivate func paginatePosts() {
 		guard let uid = self.user?.uid else { return }
 		let ref = Database.database().reference().child("posts").child(uid)
-		var query = ref.queryOrderedByKey()
+		var query = ref.queryOrdered(byChild: "creationDate")
 
 		if posts.count > 0 {
-			let value = posts.last?.id
-			query = query.queryStarting(atValue: value)
+			let value = posts.last?.creationDate.timeIntervalSince1970
+			query = query.queryEnding(atValue: value)
 		}
 
-		query.queryLimited(toFirst: 4).observeSingleEvent(of: .value, with: { (snapshot) in
+		query.queryLimited(toLast: 4).observeSingleEvent(of: .value, with: { (snapshot) in
 			guard var allObjects = snapshot.children.allObjects as? [DataSnapshot] else { return }
+
+			allObjects.reverse()
 
 			if allObjects.count < 4 {
 				self.isFinishedPaging = true
 			}
 
-			if self.posts.count > 0 {
+			if self.posts.count > 0 && allObjects.count > 0 {
 				allObjects.removeFirst()
 			}
 
@@ -73,6 +75,7 @@ class UserProfileController: UICollectionViewController, UICollectionViewDelegat
 			})
 
 			self.collectionView?.reloadData()
+
 		}) { (error) in
 			print("Failed to paginate for posts:", error)
 		}
